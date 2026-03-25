@@ -17,10 +17,18 @@ create table Users(
   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
+create table Cantons(
+    id_cantons int primary key auto_increment,
+    code varchar(4) not null,
+    name varchar(100) not null
+);
+
 create table Localites (
     id_localites int primary key auto_increment,
+    fk_cantons_id int not null,
     npa VARCHAR(5) not null,
-    localite VARCHAR(50) not null
+    localite VARCHAR(50) not null,
+    CONSTRAINT fk_loc_cantons foreign key (fk_cantons_id) references Cantons(id_cantons)
 );
 
 create table Clubs (
@@ -133,7 +141,7 @@ create table Matchs (
     fk_localites_id int not null,
     scoreEquipe int,
     scoreOpponent int,
-    temps decimal(2,2),
+    temps decimal(5,2),
     stade varchar(50),
     arbitre varchar(50),
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -186,8 +194,8 @@ create table Players(
     email varchar(100) unique,
     phone varchar(15) unique,
     anneeExp int,
-    poids decimal(3,2),
-    taille decimal(3,2),
+    poids decimal(5,2),
+    taille decimal(5,2),
     dateNaiss date,
     dateArrivee date,
     photoUrl varchar(200),
@@ -217,7 +225,7 @@ create table Participations_a (
     id_matchs int not null,
     noteOn10 varchar(6),
     notes text,
-    tempsJeu decimal(2,2),
+    tempsJeu decimal(5,2),
     but int default 0,
     passeD int default 0,
     cartonJaune int default 0,
@@ -246,7 +254,7 @@ create table PlayersLineup (
 
 create table Replacements(
     id_replacements int primary key auto_increment,
-    minute decimal(2,2) not null,
+    minute decimal(5,2) not null,
     fk_matchs_id int not null,
     fk_play_entering int not null,
     fk_play_outgoing int not null,
