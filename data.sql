@@ -4104,11 +4104,6 @@ INSERT INTO Trainings (id_events, fk_localites_id, fk_types_id, description, nbr
 VALUES
     (2, 1, 1, 'Travail passes et contrôle', 15);
 
-/** Trainings **/
-INSERT INTO Trainings (id_events, fk_localites_id, fk_types_id, description, nbrPlayer)
-VALUES
-    (2, 1, 1, 'Travail passes et contrôle', 15);
-
 /** Positions **/
 INSERT INTO Positions (code, description)
 VALUES
